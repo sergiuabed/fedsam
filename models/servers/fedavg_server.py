@@ -73,10 +73,16 @@ class Server:
                    } for c in clients}
 
         for c in clients:
-            c.model.load_state_dict(self.model)
-            num_samples, update = c.train(num_epochs, batch_size, minibatch)
-            sys_metrics = self._update_sys_metrics(c, sys_metrics)
-            self.updates.append((num_samples, copy.deepcopy(update)))
+            c.model.load_state_dict(self.model)     # here the server loads the current model parameters (weights and biases) on the client
+                                                    # see this link (https://pytorch.org/tutorials/beginner/saving_loading_models.html) to understand
+                                                    # how to save and load parameters in Pytorch
+
+            num_samples, update = c.train(num_epochs, batch_size, minibatch)    # here the client starts training its model on its local dataset, starting
+                                                                                # from the parameter values provided by the server
+
+            sys_metrics = self._update_sys_metrics(c, sys_metrics)  # NOT SURE FOR WHAT IT IS USED
+
+            self.updates.append((num_samples, copy.deepcopy(update)))   # SAVE THE UPDATES DONE BY THE CLIENT ON THE PARAMETERS PROVIDED
 
         return sys_metrics
 
@@ -110,10 +116,10 @@ class Server:
 
         for client in clients_to_test:
             if self.swa_model is None:
-                client.model.load_state_dict(self.model)
+                client.model.load_state_dict(self.model)    # provide the client with the current model parameters
             else:
                 client.model.load_state_dict(self.swa_model.state_dict())
-            c_metrics = client.test(batch_size, set_to_use)
+            c_metrics = client.test(batch_size, set_to_use) # input "batch_size" is actually not used
             metrics[client.id] = c_metrics
 
         return metrics

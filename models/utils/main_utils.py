@@ -99,22 +99,23 @@ def schedule_cycling_lr(round, c, lr1, lr2):
     lr = (1 - t) * lr1 + t * lr2
     return lr
 
-def get_stat_writer_function(ids, groups, num_samples, args):
-    def writer_fn(num_round, metrics, partition):
-        metrics_writer.print_metrics(
-            num_round, ids, metrics, groups, num_samples, partition, args.metrics_dir,
-            '{}_{}'.format(args.metrics_name, 'stat'))
-
-    return writer_fn
-
-
-def get_sys_writer_function(args):
-    def writer_fn(num_round, ids, metrics, groups, num_samples):
-        metrics_writer.print_metrics(
-            num_round, ids, metrics, groups, num_samples, 'train', args.metrics_dir,
-            '{}_{}'.format(args.metrics_name, 'sys'))
-
-    return writer_fn
+# COMMENTED THIS FUNCTIONS SINCE THEY'RE NOT USED AND THEY CAUSE PROBLEMS
+#def get_stat_writer_function(ids, groups, num_samples, args):
+#    def writer_fn(num_round, metrics, partition):
+#        metrics_writer.print_metrics(
+#            num_round, ids, metrics, groups, num_samples, partition, args.metrics_dir,
+#            '{}_{}'.format(args.metrics_name, 'stat'))
+#
+#    return writer_fn
+#
+#
+#def get_sys_writer_function(args):
+#    def writer_fn(num_round, ids, metrics, groups, num_samples):
+#        metrics_writer.print_metrics(
+#            num_round, ids, metrics, groups, num_samples, 'train', args.metrics_dir,
+#            '{}_{}'.format(args.metrics_name, 'sys'))
+#
+#    return writer_fn
 
 def plot_metrics(accuracy, loss, n_rounds, figname, figpath, title, prefix='val_'):
     name = os.path.join(figpath, figname)

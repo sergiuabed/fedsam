@@ -84,7 +84,10 @@ def main():
         model_params = tuple(model_params_list)
 
     # Create client model, and share params with servers model
-    client_model = ClientModel(*model_params, device)
+    
+    #client_model = ClientModel(*model_params, device)
+    client_model = ClientModel(device, *model_params)   #A NOT SO SMART WORKAROUND. TO BE MODIFIED ONCE WE HAVE THE WRAPPER CLASS
+
     if args.load and wandb.run.resumed:  # load model from checkpoint
         client_model, checkpoint, ckpt_path_resumed = resume_run(client_model, args, wandb.run)
         if args.restart:    # start new wandb run

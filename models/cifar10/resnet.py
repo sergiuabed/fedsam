@@ -3,7 +3,7 @@ from typing import Any, Callable, List, Optional, Type, Union
 
 import torch
 import torch.nn as nn
-from torch import Tensor, device
+from torch import Tensor
 
 
 def conv3x3(
@@ -129,10 +129,9 @@ class Bottleneck(nn.Module):
         return out
 
 
-class ClientModel(nn.Module): # ResNet
+class ResNet(nn.Module):
     def __init__(
         self,
-        dev: device,    # added this argument. In the original implementation of this project in 'main.py', 'device' is passed as last argument, but here it must be the first argument 
         layers: List[int],
         num_classes: int,
         block: str = "basic",
@@ -152,8 +151,6 @@ class ClientModel(nn.Module): # ResNet
             self.norm_layer = nn.GroupNorm
         else:
             self.norm_layer = nn.BatchNorm2d
-
-        self.device = dev
 
         self.inplanes = 64
         self.groups = groups
@@ -247,3 +244,9 @@ class ClientModel(nn.Module): # ResNet
 
     def forward(self, x: Tensor) -> Tensor:
         return self._forward_impl(x)
+    
+    def model_size(self):
+        tot_size = 0
+        for param in self.parameters():
+            tot_size += param.size()[0]
+        return tot_size

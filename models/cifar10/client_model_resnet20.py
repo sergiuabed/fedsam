@@ -1,5 +1,5 @@
 from typing import Any, Callable, List, Optional, Type, Union
-from resnet import BasicBlock, Bottleneck, conv1x1, conv3x3
+from .resnet import BasicBlock, Bottleneck, conv1x1, conv3x3
 
 import torch
 import torch.nn as nn

@@ -26,7 +26,7 @@ class ClientModel(nn.Module):
         self.conv1 = nn.Conv2d(
             3, self.in_planes, kernel_size=7, stride=2, padding=3, bias=False
         )
-        self.bn1 = NORM_LAYER(self.in_planes)
+        self.bn1 = NORM_LAYER(GROUPS, self.in_planes) # NOT 100% 'GROUPS' SHOULD BE PASSED HERE
         self.relu = nn.ReLU(inplace=True)
         self.maxpool = nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
         self.layer1 = self._make_layer(BLOCK, 64, LAYERS[0])

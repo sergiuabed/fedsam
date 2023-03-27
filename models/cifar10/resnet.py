@@ -129,7 +129,7 @@ class Bottleneck(nn.Module):
         return out
 
 
-class ResNet(nn.Module):
+class ClientModel(nn.Module):   #ResNet
     def __init__(
         self,
         layers: List[int],

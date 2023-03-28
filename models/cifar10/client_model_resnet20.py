@@ -83,8 +83,8 @@ class ClientModel(nn.Module):
         for _ in range(1, blocks):
             layers.append(
                 block(
-                    self.in_planes,
-                    planes,
+                    inplanes=self.in_planes,    # added "inplanes="
+                    planes=planes,              # added "planes="
                     groups=GROUPS,
                     base_width=BASE_WIDTH,
                     norm_layer=NORM_LAYER,

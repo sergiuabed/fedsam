@@ -49,6 +49,8 @@ class BasicBlock(nn.Module):
         self.bn1 = norm_layer(planes)
         self.relu = nn.ReLU(inplace=True)
         self.conv2 = conv3x3(planes, planes)
+        print("I'm here")
+        print(planes)
         self.bn2 = norm_layer(planes)
         self.downsample = downsample
         self.stride = stride

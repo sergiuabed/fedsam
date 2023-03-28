@@ -46,11 +46,11 @@ class BasicBlock(nn.Module):
             raise ValueError("BasicBlock only supports groups=1 and base_width=64")
         # Both self.conv1 and self.downsample layers downsample the input when stride != 1
         self.conv1 = conv3x3(inplanes, planes, stride)
+        print("I'm here")
+        print(planes)
         self.bn1 = norm_layer(planes)
         self.relu = nn.ReLU(inplace=True)
         self.conv2 = conv3x3(planes, planes)
-        print("I'm here")
-        print(planes)
         self.bn2 = norm_layer(planes)
         self.downsample = downsample
         self.stride = stride

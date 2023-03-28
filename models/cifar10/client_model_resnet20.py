@@ -64,7 +64,7 @@ class ClientModel(nn.Module):
         if stride != 1 or self.in_planes != planes * block.expansion:
             downsample = nn.Sequential(
                 conv1x1(self.in_planes, planes * block.expansion, stride),
-                NORM_LAYER(planes * block.expansion),
+                NORM_LAYER(GROUPS, planes * block.expansion), # ADDED 'GROUPS'
             )
 
         layers = []

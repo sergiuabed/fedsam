@@ -48,10 +48,10 @@ class BasicBlock(nn.Module):
         self.conv1 = conv3x3(inplanes, planes, stride)
         print("I'm here")
         print(planes)
-        self.bn1 = norm_layer(planes)
+        self.bn1 = norm_layer(groups, planes)   # ADDED 'groups'. The 'group' argument is required when 'norm_layer' is a groupnorm. If 'norm_layer' is batchnorm the argument 'planes' is enough
         self.relu = nn.ReLU(inplace=True)
         self.conv2 = conv3x3(planes, planes)
-        self.bn2 = norm_layer(planes)
+        self.bn2 = norm_layer(groups, planes)   # ADDED 'groups'
         self.downsample = downsample
         self.stride = stride
 

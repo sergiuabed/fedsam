@@ -322,7 +322,7 @@ def init_wandb(args, alpha=None, run_id=None):
     run = wandb.init(
                 id = id,
                 # Set entity to specify your username or team name
-                entity="fedsam",    #changed from 'federated-learning'
+                entity="fl-team",    #changed from 'federated-learning'
                 # Set the project where this run will be logged
                 project='fl_' + args.dataset,
                 group=group_name,

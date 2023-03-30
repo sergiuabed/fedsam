@@ -22,7 +22,7 @@ from utils.main_utils import *
 from utils.model_utils import read_data
 
 os.environ["WANDB_API_KEY"] = "40310b4fba1cf56e947ea84952d9730bb0bcd680"
-os.environ["WANDB_MODE"] = "offline"
+os.environ["WANDB_MODE"] = "online"
 
 def main():
     args = parse_args()

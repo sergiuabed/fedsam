@@ -9,7 +9,9 @@ from numpy import asarray
 from torch.utils.data import Dataset
 
 IMAGE_SIZE = 32
-IMAGES_DIR = os.path.join('..', 'data', 'cifar10', 'data', 'raw', 'img')
+#IMAGES_DIR = os.path.join('..', 'data', 'cifar10', 'data', 'raw', 'img')
+TRAIN_IMAGES_DIR = os.path.join('..', 'data', 'cifar10', 'data', 'raw', 'img', 'train')
+TEST_IMAGES_DIR = os.path.join('..', 'data', 'cifar10', 'data', 'raw', 'img', 'test')
 
 class ClientDataset(Dataset):
     """ CIFAR100 Dataset """
@@ -20,7 +22,7 @@ class ClientDataset(Dataset):
             data: dictionary in the form {'x': list of imgs ids, 'y': list of correspondings labels}
             train (bool, optional): boolean for distinguishing between client's train and test data
         """
-        self.root_dir = IMAGES_DIR
+        self.root_dir = TRAIN_IMAGES_DIR if train == True else TEST_IMAGES_DIR
         self.imgs = []
         self.labels = []
         self.loading = loading

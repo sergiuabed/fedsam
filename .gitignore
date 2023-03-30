@@ -12,3 +12,6 @@ models/sent140/embs.json
 _build/
 _templates/
 autodoc/
+*.raw
+/stuff
+download_dataset.py

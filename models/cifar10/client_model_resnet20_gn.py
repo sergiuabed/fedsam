@@ -36,6 +36,7 @@ class ResidualBlock(nn.Module):
 class ClientModel(nn.Module):    
     def __init__(self, lr:float, num_classes:int, device:int):
         super(ClientModel, self).__init__()
+        self.device = device
         self.groups = GROUPS
         self.in_channels = 16
         self.conv = conv3x3(3, 16)

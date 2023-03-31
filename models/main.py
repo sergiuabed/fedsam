@@ -339,7 +339,11 @@ def init_wandb(args, alpha=None, run_id=None):
 
 def print_stats(num_round, server, train_clients, train_num_samples, test_clients, test_num_samples, args, fp):
     train_stat_metrics = server.test_model(train_clients, args.batch_size, set_to_use='train')
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     val_metrics = print_metrics(train_stat_metrics, train_num_samples, fp, prefix='train_')
+    print(val_metrics)
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
 
     test_stat_metrics = server.test_model(test_clients, args.batch_size, set_to_use='test' )
     test_metrics = print_metrics(test_stat_metrics, test_num_samples, fp, prefix='{}_'.format('test'))

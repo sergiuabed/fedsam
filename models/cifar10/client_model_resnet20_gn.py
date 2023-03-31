@@ -48,6 +48,8 @@ class ClientModel(nn.Module):
         self.avg_pool = nn.AvgPool2d(8)
         self.fc = nn.Linear(64, num_classes)
 
+        self.size = self.model_size()
+
     def make_layer(self, out_channels, blocks, stride=1):
         downsample = None
         if (stride != 1) or (self.in_channels != out_channels):
@@ -72,3 +74,9 @@ class ClientModel(nn.Module):
         out = out.view(out.size(0), -1)
         out = self.fc(out)
         return out
+    
+    def model_size(self):
+        tot_size = 0
+        for param in self.parameters():
+            tot_size += param.size()[0]
+        return tot_size

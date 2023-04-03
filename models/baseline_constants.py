@@ -19,6 +19,7 @@ MODEL_PARAMS = {
     'cifar10.cnn': (0.01, 10),
     'cifar10.resnet': (20, 10, "basic", False, 2, 64, "groupnorm"),
     'cifar10.client_model_resnet20_gn': (0.1, 10),
+    'cifar100.client_model_resnet20_gn': (0.1, 10),
 }
 """dict: Model specific parameter specification"""
 
